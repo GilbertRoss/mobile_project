@@ -3,16 +3,20 @@
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
 
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import NewIngredients from '../screens/NewIngredients';
+import ExpiringIngredients from '../screens/ExpiringIngredients';
+import IngredientsList from '../screens/IngredientsList';
+import GroceryList from '../screens/GroceryList';
+
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import Ingredients from '../screens/Ingredients';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -21,20 +25,34 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Insert ingredients"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="Insert ingredients"
+        component={NewIngredients}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="add-circle-outline" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="Expiring ingredients"
+        component={ExpiringIngredients}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="egg-outline" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Ingredients queries"
+        component={IngredientsList}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="egg-outline" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Grocery list"
+        component={GroceryList}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="basket" color={color} />,
         }}
       />
     </BottomTab.Navigator>
